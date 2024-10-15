@@ -1,22 +1,16 @@
 <?php
 include __DIR__ . '/../../config.php';
-
-include __DIR__ . './../../helpers/AppManager.php';
-
-$sm = AppManager::getSM();
-
 include BASE_PATH . '/helpers/AppManager.php';
 
 $sm = AppManager::getSM();
+
+$userId = $sm->getAttribute("userId");
 $username = $sm->getAttribute("username");
 $permission = $sm->getAttribute("permission");
-$user_id = $sm->getAttribute("userId");
 
 // Extract the last filename from the URL
 $currentUrl = $_SERVER['SCRIPT_NAME'];
 $currentFilename = basename($currentUrl);  // e.g., "dashboard.php"
-
-
 
 ?>
 
@@ -96,7 +90,6 @@ $currentFilename = basename($currentUrl);  // e.g., "dashboard.php"
 
                 <ul class="menu-inner py-1">
 
-                    <li class="menu-item <?= $currentFilename === "dashboard.php" ? 'active' : '' ?>">
                     <li class="menu-item <?= $currentFilename === "dashboard.php" ? 'active' : '' ?> ">
                         <a href="<?= url('views/admin/dashboard.php') ?>" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
@@ -105,20 +98,6 @@ $currentFilename = basename($currentUrl);  // e.g., "dashboard.php"
                     </li>
 
                     <!-- Dashboard -->
-                    <li class="menu-item <?= $currentFilename === "appoiment.php" ? 'active' : '' ?> ">
-                        <a href="<?= url('views/admin/appoiment.php') ?>" class="menu-link">
-                            <i class="menu-icon tf-icons  bx bx-collection"></i>
-                            <div data-i18n="Analytics">Appointments</div>
-                        </a>
-                    </li>
-                    <li class="menu-item <?= $currentFilename === "user.php" ? 'active' : '' ?> ">
-                        <a href="<?= url('views/admin/user.php') ?>" class="menu-link">
-                            <i class="menu-icon tf-icons  bx bx-user"></i>
-                            <div data-i18n="Analytics">Users</div>
-                        </a>
-                    </li>
-
-
                     <li class="menu-item <?= $currentFilename === "appointments.php" ? 'active' : '' ?> ">
                         <a href="<?= url('views/admin/appointments.php') ?>" class="menu-link">
                             <i class="menu-icon tf-icons  bx bx-collection"></i>
@@ -132,45 +111,7 @@ $currentFilename = basename($currentUrl);  // e.g., "dashboard.php"
                             <div data-i18n="Analytics">Users</div>
                         </a>
                     </li>
-                    <li class="menu-item <?= $currentFilename === "appointments_booking.php" ? 'active' : '' ?> ">
-                        <a href="<?= url('views/admin/appointments.php') ?>" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-run"></i>
-                            <div data-i18n="Analytics">Appointment Booking</div>
-                        </a>
-                    </li>
-                    <?php if ($permission == 'operator') : ?>
-                            <li class="menu-item <?= $currentFilename === "doctors.php" ? 'active' : '' ?>">
-                                <a href="<?= url('views/admin/doctors.php') ?>" class="menu-link">
-                                    <i class="menu-icon tf-icons bx bx-plus-medical"></i>
-                                    <div data-i18n="Analytics">Doctors</div>
-                                </a>
-                            </li>
-                        <?php endif; ?>
-                        <?php if ($permission == 'operator') : ?>
-                            <li class="menu-item <?= $currentFilename === "doctor_availability.php" ? 'active' : '' ?>">
-                                <a href="<?= url('views/admin/doctor_availability.php') ?>" class="menu-link">
-                                    <i class="menu-icon tf-icons bx bx-time-five"></i>
-                                    <div data-i18n="Analytics">Doctor Availability</div>
-                                </a>
-                            </li>
 
-
-                            <li class="menu-item <?= $currentFilename === "payments.php" ? 'active' : '' ?>">
-                                <a href="<?= url('views/admin/payments.php') ?>" class="menu-link">
-                                    <i class="menu-icon tf-icons bx bx-wallet"></i>
-                                    <div data-i18n="Analytics">Payments</div>
-                                </a>
-                            </li>
-
-                            <li class="menu-item <?= $currentFilename === "treatments.php" ? 'active' : '' ?>">
-                                <a href="<?= url('views/admin/treatments.php') ?>" class="menu-link">
-                                    <i class="menu-icon tf-icons bx bx-dna"></i>
-                                    <div data-i18n="Analytics">Treatments</div>
-                                </a>
-                            </li>
-
-                           
-                        <?php endif; ?>
                 </ul>
             </aside>
             <!-- / Menu -->
